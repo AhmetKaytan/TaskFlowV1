@@ -1,0 +1,60 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Complete the project documentation",
+      "description": "Write detailed documentation for the project, including setup instructions and usage examples.",
+      "status": "completed",
+      "priority": "high",
+      "assignee": "John Doe",
+      "dueDate": "2027-06-15",
+      "createdAt": "2026-06-01T10:00:00Z",
+      "updatedAt": "2026-06-10T15:30:00Z"
+    },
+    {
+      "id": 2,
+      "title": "Implement user authentication",
+      "description": "Add user authentication to the application using JWT tokens.",
+      "status": "pending",
+      "priority": "medium",
+      "assignee": "Jane Smith",
+      "dueDate": "2027-06-20",
+      "createdAt": "2026-06-05T12:00:00Z",
+      "updatedAt": "2026-06-10T15:30:00Z"
+    },
+    {
+      "id": 3,
+      "title": "Design the landing page",
+      "description": "Create a responsive and visually appealing landing page for the application.",
+      "status": "in_progress",
+      "priority": "high",
+      "assignee": "Alice Johnson",
+      "dueDate": "2027-06-25",
+      "createdAt": "2026-06-07T09:00:00Z",
+      "updatedAt": "2026-06-10T15:30:00Z"
+    },
+    {
+      "id": 4,
+      "title": "Set up CI/CD pipeline",
+      "description": "Configure continuous integration and deployment for the project.",
+      "status": "pending",
+      "priority": "medium",
+      "assignee": "Bob Brown",
+      "dueDate": "2027-07-01",
+      "createdAt": "2026-06-10T10:00:00Z",
+      "updatedAt": "2026-06-10T15:30:00Z"
+    },
+    {
+      "id": 5,
+      "title": "Conduct user testing",
+      "description": "Organize and conduct user testing sessions to gather feedback on the application.",
+      "status": "pending",
+      "priority": "high",
+      "assignee": "Charlie Davis",
+      "dueDate": "2027-07-10",
+      "createdAt": "2026-06-12T11:00:00Z",
+      "updatedAt": "2026-06-12T11:00:00Z"
+    }
+  ],
+  "nextId": 6
+}
