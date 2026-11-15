@@ -1,5 +1,12 @@
 {
   "users": [
+    {
+      "id": 1,
+      "username": "ahmet123",
+      "password": "$2b$10$cAPyBN8HBcICNOmnsexH9O4zNY7Z4Uv4obzGlEzwfiE.LtwEc.oGu",
+      "email": null,
+      "createdAt": "2026-11-02T13:06:05.204Z"
+    }
   ],
-  "nextId": 1
+  "nextId": 2
 }
