@@ -1,282 +1,292 @@
-# TaskFlow Frontend
+# TaskFlow V1 - Backend
 
-TaskFlow is a full-stack task management application developed as a learning and portfolio project. This repository contains the **frontend application**, built with React and TypeScript.
+TaskFlow V1 is a REST API developed for task management using Node.js and Express. It provides user authentication, task management, and reporting functionality.
 
-The frontend communicates with a separate REST API backend built with Node.js and Express.
+User and task data are stored in JSON files. Authentication is handled using JSON Web Tokens (JWT). Valid JWT authentication is required to access task and report endpoints.
 
-The application allows users to manage their tasks, track progress, and view task statistics through a responsive user interface.
+In this version, JWT authenticates users, but tasks are not separated by user accounts. All authenticated users share the same task list.
 
 ## Live Demo
 
-You can access the live application here:
+The TaskFlow frontend is deployed and communicates with this backend API.
 
-[TaskFlow - Live Demo](https://taskflowv1-app.netlify.app/)
-
-## Related Repository
-
-[TaskFlow Backend](https://github.com/AhmetKaytan/TaskFlowV1)
+- **Live Application:** [TaskFlow - Live Demo](https://taskflowv1-app.netlify.app/)
+- **Frontend Repository:** [TaskFlow V1 - Frontend](https://github.com/AhmetKaytan/TaskFlowV1-Frontend)
+- **Backend API:** [https://taskflowv1.onrender.com](https://taskflowv1.onrender.com)
 
 ## Features
 
-### Authentication
-- User registration and login.
-- JWT-based authentication.
-- Protected routes for authenticated users.
-- Guest-only routes for login and registration pages.
-- Logout functionality.
+- User registration and login
+- JWT-based authentication
+- Token revocation through logout
+- Task creation, retrieval, updating, and deletion
+- Task filtering and searching
+- Task reporting and statistics
+- JSON-based data storage
+- Request logging
+- Automated tests using Jest and Supertest
 
-### Task Management
-- Create, read, update, and delete tasks.
-- View individual task details.
-- Assign tasks to users.
-- Set task priorities and due dates.
-- Manage task statuses:
-  - Pending
-  - In Progress
-  - Completed
-- Search and filter tasks by relevant criteria.
+## Technologies
 
-### Reports & Dashboard
-- View task statistics.
-- Track total, completed, and pending tasks.
-- View completed and pending task lists.
-- Monitor task completion rates.
-
-### User Interface
-- Responsive interface built with Bootstrap.
-- Separate layouts for public and authenticated pages.
-- Protected navigation and page access.
-- Task cards, detail views, and reporting components.
-
-## Tech Stack
-
-### Frontend
-- React 19
-- TypeScript
-- Vite
-- React Router
-- Bootstrap 5
-- Bootstrap Icons
-
-### Backend
 - Node.js
 - Express.js
-- JSON file-based data storage
-- JWT authentication
-- CORS
+- JSON Web Tokens (JWT)
+- Jest
+- Supertest
+- JSON file storage
 
-### Deployment
-- **Backend:** Render
-- **Frontend:** Netlify 
+## Requirements
 
-## Project Structure
-
-The frontend follows a component-based structure with separate directories for pages, components, services, contexts, interfaces, layouts, and utilities.
-
-```text
-src/
-├── components/
-│   ├── HomePageComponents/
-│   └── TasksPageComponents/
-├── contexts/
-├── interfaces/
-├── layouts/
-├── pages/
-├── services/
-├── styles/
-├── utils/
-├── App.tsx
-└── main.tsx
-```
-
-### Directory Overview
-
-| Directory | Description |
-|---|---|
-| `components/` | Reusable UI components |
-| `contexts/` | Authentication context and state management |
-| `interfaces/` | TypeScript interfaces and response types |
-| `layouts/` | Public and private application layouts |
-| `pages/` | Application pages |
-| `services/` | API communication and HTTP requests |
-| `styles/` | Component and page stylesheets |
-| `utils/` | Helper functions, including authentication utilities |
-
-## Getting Started
-
-Follow these instructions to run the frontend locally.
-
-### Prerequisites
-
-Make sure you have the following installed:
-
-- [Node.js](https://nodejs.org/) (LTS recommended)
+- Node.js 18 or later
 - npm
-- Git
 
-### 1. Clone the Repository
+## Installation
 
-```bash
-git clone <YOUR_FRONTEND_REPOSITORY_URL>
-cd TaskFlow-Frontend
-```
-
-### 2. Install Dependencies
-
-```bash
-npm install
-```
-
-### 3. Configure Environment Variables
-
-Create a `.env` file in the frontend project root directory.
-
-**To connect to the deployed backend:**
-
-```env
-VITE_API_URL=https://taskflowv1.onrender.com
-```
-
-Alternatively, to use a locally running backend:
-
-```env
-VITE_API_URL=
-```
-
-When the variable is empty, API requests use the local Vite proxy configuration.
-
-**Note:** The local backend must be running on `http://localhost:3000` when using the local proxy.
-
-#### Setting Up the Local Backend
-
-If you prefer to run the backend locally, clone its repository:
+Clone the repository:
 
 ```bash
 git clone https://github.com/AhmetKaytan/TaskFlowV1.git
+```
+
+Navigate to the project directory:
+
+```bash
 cd TaskFlowV1
+```
+
+Install dependencies:
+
+```bash
 npm install
 ```
 
-Create a `.env` file in the backend project root directory.
-
-Example configuration:
+Copy `.env.example` to `.env` and configure the values for your local environment:
 
 ```env
 PORT=3000
-JWT_SECRET=your-strong-random-secret
+JWT_SECRET=your-long-random-secret
 JWT_EXPIRES_IN=1h
 ```
 
-Use a secure, randomly generated value for `JWT_SECRET`. Do not share or commit your actual secret.
+Use a long, randomly generated value for `JWT_SECRET`. Never share your actual secret or commit your `.env` file to GitHub.
 
-Start the backend:
+If `PORT` is not specified, the server uses port `3000` by default.
+
+## Running the Application
+
+Start the server:
 
 ```bash
 npm start
 ```
 
-Once the backend is running, return to the frontend project and continue with the next step.
-
-### 4. Start the Development Server
-
-```bash
-npm run dev
-```
-
-Vite will start the development server. Open the local URL displayed in your terminal, usually:
+The server runs locally at:
 
 ```text
-http://localhost:5173
+http://localhost:3000
 ```
 
-## Available Scripts
-
-| Command | Description |
-|---|---|
-| `npm run dev` | Starts the Vite development server |
-| `npm run build` | Runs TypeScript checks and creates a production build |
-| `npm run preview` | Previews the production build locally |
-| `npm run lint` | Runs ESLint |
-
-To create a production build:
-
-```bash
-npm run build
-```
-
-The generated files will be available in the `dist/` directory.
-
-## Backend API
-
-The frontend communicates with a separately deployed Express.js backend.
-
-**Production API URL:**
-
-```text
-https://taskflowv1.onrender.com
-```
-
-### API Endpoints
-
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | `/auth/register` | Register a new user |
-| POST | `/auth/login` | Authenticate a user |
-| POST | `/auth/logout` | Log out a user |
-| GET | `/tasks` | Retrieve tasks |
-| POST | `/tasks` | Create a task |
-| GET | `/tasks/:id` | Retrieve task details |
-| PUT | `/tasks/:id` | Update a task |
-| DELETE | `/tasks/:id` | Delete a task |
-| GET | `/reports/completed` | Retrieve completed tasks |
-| GET | `/reports/pending` | Retrieve pending tasks |
-| GET | `/reports/summary` | Retrieve task statistics |
-
-Protected endpoints require a valid JWT token in the Authorization header:
-
-```http
-Authorization: Bearer <YOUR_TOKEN>
-```
+If you configure a different port, use that port when sending requests.
 
 ## Deployment
 
-The application uses separate hosting services for its frontend and backend.
+The backend API is deployed on **Render**.
 
-- **Backend:** Deployed on Render.
-- **Frontend:** Deployed on Netlify 
+- **Hosting Provider:** Render
+- **Service:** Web Service
+- **Region:** Frankfurt
+- **Instance:** Free
+- **Production API URL:** https://taskflowv1.onrender.com
 
-Frontend: https://taskflowv1-app.netlify.app/
-Backend: https://taskflowv1.onrender.com
+### Environment Variables
 
-The frontend uses the `VITE_API_URL` environment variable to determine which backend API it communicates with.
+The following environment variables are configured for the deployed backend:
 
-For a production frontend deployment, configure the following environment variable in Netlify:
+| Variable | Description |
+|---|---|
+| `JWT_SECRET` | Secret key used to sign JWTs |
+| `JWT_EXPIRES_IN` | JWT expiration duration (`1h`) |
+| `CLIENT_URL` | Allowed frontend origin for CORS |
+
+Render also provides the `PORT` environment variable for the running service.
+
+The frontend communicates with this API using the `VITE_API_URL` environment variable:
 
 ```env
 VITE_API_URL=https://taskflowv1.onrender.com
 ```
 
-The backend must also allow the deployed frontend's origin through its CORS configuration.
+The backend CORS configuration allows requests from the deployed frontend origin.
 
-## Data Storage
+**Deployment Note:** Render Free services may spin down after periods of inactivity. The first request after inactivity may take longer than usual.
 
-The backend currently uses JSON files for data storage instead of a traditional database.
+## Authentication and JWT
 
-This approach was intentionally chosen to match the scope and learning objectives of the training project.
+Registration and login endpoints do not require JWT authentication.
 
-**Important:** The backend is hosted on Render's free Web Service plan, which does not provide persistent disk storage. Therefore, data written to the service's local filesystem may be lost when the service restarts or is redeployed.
+### User Registration
 
-TaskFlow is intended as a learning and demonstration project, not as a production system for storing important user data.
+```http
+POST /auth/register
+Content-Type: application/json
 
-## Project Goals
+{
+  "username": "example_user",
+  "password": "strong-password",
+  "email": "example@example.com"
+}
+```
 
-This project provided practical experience with:
+The `email` field is optional. Usernames must contain between 3 and 30 characters, and passwords must contain at least 8 characters.
 
-- Building a React application using TypeScript.
-- Designing reusable components and organizing frontend architecture.
-- Implementing authentication and protected routes.
-- Integrating a frontend with a RESTful API.
-- Managing application state with React Context.
-- Handling asynchronous requests and API responses.
-- Implementing CRUD operations.
-- Deploying a full-stack application using cloud hosting services.
+### User Login
+
+```http
+POST /auth/login
+Content-Type: application/json
+
+{
+  "username": "example_user",
+  "password": "strong-password"
+}
+```
+
+The `token` field in a successful login response contains the JWT. The server adds a unique `jti` (JWT ID) to each generated token.
+
+To access protected endpoints, include the token in the Authorization header:
+
+```http
+Authorization: Bearer <token>
+```
+
+### Logout
+
+To log out, send a valid authentication token:
+
+```http
+POST /auth/logout
+Authorization: Bearer <token>
+```
+
+The logout operation stores the current token's `jti` and expiration time in `src/data/revokedTokens.json`.
+
+Once revoked, the same token is rejected by subsequent protected requests with a `403` response.
+
+Logout only revokes the submitted token. Separate logout requests are required to revoke tokens issued to other devices or sessions.
+
+Expired revocation records are cleaned up when the server starts and subsequently every hour.
+
+The `src/data/revokedTokens.json` file must contain valid JSON. Its initial content is:
+
+```json
+{
+  "revokedTokens": []
+}
+```
+
+Some HTTP status codes returned by protected endpoints:
+
+- `401`: The Authorization header is missing.
+- `403`: The token is invalid, expired, or revoked.
+- `500`: The revoked token list cannot be read.
+
+## API Endpoints
+
+`BASE_URL` refers to the API address. For local development, this is `http://localhost:3000`. For production, use `https://taskflowv1.onrender.com`.
+
+| Method | Endpoint | Description | JWT |
+|---|---|---|---|
+| `POST` | `/auth/register` | Register a new user | Not required |
+| `POST` | `/auth/login` | Authenticate and receive a JWT | Not required |
+| `POST` | `/auth/logout` | Revoke the submitted JWT | Required |
+| `GET` | `/tasks` | List tasks with optional filters | Required |
+| `POST` | `/tasks` | Create a task | Required |
+| `GET` | `/tasks/search?keyword=...` | Search by title, description, or assignee | Required |
+| `GET` | `/tasks/assignee/:name` | List tasks by assignee | Required |
+| `GET` | `/tasks/:id` | Retrieve a task by ID | Required |
+| `PUT` | `/tasks/:id` | Update a task | Required |
+| `DELETE` | `/tasks/:id` | Delete a task | Required |
+| `GET` | `/reports/completed` | List completed tasks | Required |
+| `GET` | `/reports/pending` | List pending tasks | Required |
+| `GET` | `/reports/summary` | Retrieve task statistics | Required |
+
+### Task Filtering
+
+The `GET /tasks` endpoint supports the following query parameters:
+
+- `status`
+- `priority`
+- `assignee`
+- `title`
+
+Multiple filters can be combined in a single request.
+
+Example:
+
+```http
+GET /tasks?status=pending&priority=high
+```
+
+### Creating and Updating Tasks
+
+The following fields must be provided in `POST /tasks` and `PUT /tasks/:id` requests:
+
+```json
+{
+  "title": "Complete project documentation",
+  "description": "Write installation and usage instructions",
+  "assignee": "Example User",
+  "status": "pending",
+  "priority": "medium",
+  "dueDate": "2027-06-15"
+}
+```
+
+Validation rules:
+
+- `status`: Must be `pending`, `in_progress`, or `completed`.
+- `priority`: Must be `low`, `medium`, or `high`.
+- `dueDate`: Must be a valid future date in `YYYY-MM-DD` format.
+- `title`: Maximum 100 characters.
+- `assignee`: Maximum 50 characters.
+- `description`: Maximum 500 characters.
+- `id`, `createdAt`, and `updatedAt` are managed by the server and must not be included in the request body.
+
+## JSON Data Files
+
+The application stores its data in the following JSON files:
+
+- `src/data/tasks.json`: Stores tasks and the next task ID (`nextId`).
+- `src/data/users.json`: Stores users and the next user ID (`nextId`).
+- `src/data/revokedTokens.json`: Stores revoked JWT IDs (`jti`) and their expiration times (`expiresAt`).
+- `src/data/app.log`: Stores request method and route information.
+
+JSON file storage was intentionally chosen for V1 as part of the project's learning scope.
+
+**Important – Production Data Persistence:**
+
+In a local environment, data stored in JSON files remains available after restarting the server.
+
+However, Render Free services use an ephemeral filesystem unless persistent storage is configured. This means JSON data may be lost when the service restarts, redeploys, or its environment is recreated.
+
+The deployed version is intended for demonstration and testing purposes. It should not be used for permanent data storage.
+
+All authenticated users share the same task list in this version.
+
+## Tests
+
+The project uses Jest and Supertest for automated testing.
+
+Run the tests with:
+
+```bash
+npm test
+```
+
+**Current Test Status:** All 51 tests across 4 test suites are passing.
+
+## Project Scope
+
+TaskFlow V1 was developed as a learning and portfolio project to practice backend development with Node.js and Express.
+
+The project focuses on REST API design, middleware, JWT authentication, request validation, file-based data management, and automated testing.
